@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입 진행</title>
+</head>
+<body>
+<div class="container">
+    <form th:action="@{/user/new}" th:object="${createUserAccountDto}" method="post">
+        <div class="form_group">
+            <label for="userName">이름</label>
+            <input type="text" id="userName" name="userName" placeholder="이름을 입력하세요.">
+
+            <label for="userNumber">학번</label>
+            <input type="text" id="userNumber" name="userNumber" placeholder="학번을 입력하세요."> <br><br>
+
+                <label for="faculty">단과대학</label>
+                <select class="form-control" id="faculty" th:name="faculty">
+                    <option value="">단과대학 선택</option>
+                    <option th:each="faculty : ${faculties}"
+                            th:value="${faculty.facultyId}"
+                            th:text="${faculty.facultyName}"></option>
+                </select>
+
+                    <label for="department">학과</label>
+                    <select class="form-control" id="department" th:name="department">
+                        <option value="">학과 선택</option>
+                        <option th:each="department : ${departments}"
+                                th:value="${department.departmentId}"
+                                th:text="${department.departmentName}"></option>
+                    </select><br><br>
+
+            <label for="userEmail">이메일</label>
+            <input type="email" id="userEmail" name="userEmail" placeholder="이메일을 입력하세요."> <br><br>
+
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요."> <br>
+
+            <button type="submit">회원가입</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
